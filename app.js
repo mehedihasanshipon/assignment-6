@@ -81,8 +81,26 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  let duration = document.getElementById('duration').value || 1000;
 
+  if(duration < 1){
+    duration = 1000;
+      if(duration > 0){
+        sliders.forEach(slide => {
+          let item = document.createElement('div')
+          item.className = "slider-item";
+          item.innerHTML = `<img class="w-100"
+          src="${slide}"
+          alt="">`;
+          sliderContainer.appendChild(item)
+        })
+        changeSlide(0)
+        timer = setInterval(function () {
+          slideIndex++;
+          changeSlide(slideIndex);
+        }, duration);
+      }
+  }else{
     sliders.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
@@ -96,6 +114,7 @@ const createSlider = () => {
       slideIndex++;
       changeSlide(slideIndex);
     }, duration);
+  }
 }
 
 // change slider index 
@@ -140,18 +159,9 @@ search.addEventListener("keypress", function(event) {
 
 
 sliderBtn.addEventListener('click', function () {
-  const duration = document.getElementById('duration').value || 1000;
-  if(duration < 1){
-    const negativeValue = document.getElementById('negative-value');
-    negativeValue.style.color = 'red';
-    negativeValue.innerHTML = `
-      <h2>Duration time can not be negative. </h2>
-    `;
-  }else{
-    createSlider()
-  }
-  
+  createSlider();
 })
+
 // Slider button Enter key function
 duration.addEventListener("keypress", function(event) {
   if (event.key == 'Enter'){
