@@ -18,7 +18,6 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  // setTimeout(() => { loadSpinner() }, 3000)
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -29,7 +28,6 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-  // loadSpinner();
   setTimeout(() => { loadSpinner() }, 1000);
 }
 
