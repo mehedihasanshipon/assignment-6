@@ -83,38 +83,23 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   let duration = document.getElementById('duration').value || 1000;
 
-  if(duration < 1){
+  if(duration <= 0){
     duration = 1000;
-      if(duration > 0){
-        sliders.forEach(slide => {
-          let item = document.createElement('div')
-          item.className = "slider-item";
-          item.innerHTML = `<img class="w-100"
-          src="${slide}"
-          alt="">`;
-          sliderContainer.appendChild(item)
-        })
-        changeSlide(0)
-        timer = setInterval(function () {
-          slideIndex++;
-          changeSlide(slideIndex);
-        }, duration);
-      }
-  }else{
-    sliders.forEach(slide => {
-      let item = document.createElement('div')
-      item.className = "slider-item";
-      item.innerHTML = `<img class="w-100"
-      src="${slide}"
-      alt="">`;
-      sliderContainer.appendChild(item)
-    })
-    changeSlide(0)
-    timer = setInterval(function () {
-      slideIndex++;
-      changeSlide(slideIndex);
-    }, duration);
   }
+
+  sliders.forEach(slide => {
+    let item = document.createElement('div')
+    item.className = "slider-item";
+    item.innerHTML = `<img class="w-100"
+    src="${slide}"
+    alt="">`;
+    sliderContainer.appendChild(item)
+  })
+  changeSlide(0)
+  timer = setInterval(function () {
+    slideIndex++;
+    changeSlide(slideIndex);
+  }, duration);
 }
 
 // change slider index 
